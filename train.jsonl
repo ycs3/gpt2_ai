@@ -1,0 +1,3 @@
+{"prompt":"What is overfitting?","completion":"Overfitting happens when a model memorizes training examples instead of learning patterns that generalize to new data."}
+{"prompt":"What is a tensor?","completion":"A tensor is a multidimensional array used to represent data and parameters in machine learning."}
+{"prompt":"Explain gradient descent simply.","completion":"Gradient descent updates model parameters step by step to reduce prediction error."}
