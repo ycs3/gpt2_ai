@@ -42,12 +42,12 @@ def cross_entropy(logits, targets, ignore_index=-100):
     if not bool(np.array(mx.any(valid))):
         raise ValueError("batch has no valid targets")
 
-    valid_logits = flat_logits[valid]
-    valid_targets = flat_targets[valid]
-    shifted = valid_logits - mx.max(valid_logits, axis=-1, keepdims=True)
+    safe_targets = mx.where(valid, flat_targets, 0)
+    shifted = flat_logits - mx.max(flat_logits, axis=-1, keepdims=True)
     log_probs = shifted - mx.log(mx.sum(mx.exp(shifted), axis=-1, keepdims=True))
-    picked = log_probs[mx.arange(valid_targets.shape[0]), valid_targets]
-    return -mx.mean(picked)
+    picked = mx.take_along_axis(log_probs, safe_targets.reshape(-1, 1), axis=-1).reshape(-1)
+    valid_f = valid.astype(log_probs.dtype)
+    return -(mx.sum(picked * valid_f) / mx.sum(valid_f))
 
 
 def lora_linear(x, weight, bias, lora_a, lora_b, alpha):
