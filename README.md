@@ -29,3 +29,34 @@ python gpt_peft_mlx_quant4.py --mode infer --model gpt2 --load-lora mlx_gpt2_lor
 python gpt_peft_np_quant4.py --mode train --model gpt2 --data train.jsonl --save-lora numpy_gpt2_lora_quant4.npz
 python gpt_peft_np_quant4.py --mode infer --model gpt2 --load-lora numpy_gpt2_lora_quant4.npz
 ```
+
+## cifar10_diffusion_mlx.py
+Text-conditional CIFAR-10 diffusion training and sampling in MLX.
+```
+pip install mlx matplotlib numpy
+```
+
+Train from scratch:
+```
+python cifar10_diffusion_mlx.py --mode train --sample-steps 100 --no-show
+```
+
+Resume training from saved weights:
+```
+python cifar10_diffusion_mlx.py --mode train --resume-from diffusion_cifar10_labels_mlx.safetensors --sample-steps 100 --no-show
+```
+
+Render the forward diffusion process:
+```
+python cifar10_diffusion_mlx.py --mode forward --weights-path diffusion_cifar10_labels_mlx.safetensors
+```
+
+Generate class-conditioned samples:
+```
+python cifar10_diffusion_mlx.py --mode sample --weights-path diffusion_cifar10_labels_mlx.safetensors --prompts airplane cat dog ship --sample-steps 50
+```
+
+Generate unconditional samples:
+```
+python cifar10_diffusion_mlx.py --mode sample --weights-path diffusion_cifar10_labels_mlx.safetensors --unconditional --num-samples 64 --sample-steps 50
+```
