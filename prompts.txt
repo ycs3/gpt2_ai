@@ -1,0 +1,8 @@
+Write a tagline for a neighborhood coffee shop.
+Explain recursion in one short paragraph for a beginner.
+Give a short pep talk to someone studying for finals.
+Write a friendly product description for a reusable water bottle.
+Suggest a two-sentence bedtime story opening about a fox.
+Give three simple tips for staying focused while working from home.
+Write a polite reply declining a meeting invite because of a deadline.
+Explain what machine learning is in plain English.
