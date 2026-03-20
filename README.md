@@ -15,3 +15,17 @@ python gpt_peft_mlx.py --mode train --model gpt2 --data train.jsonl --save-lora 
 python gpt_peft_mlx.py --mode infer --model gpt2 --load-lora mlx_gpt2_lora.npz
 python gpt_peft_mlx.py --mode infer --model gpt2 # run gpt2 as-is
 ```
+
+## gpt_peft_mlx_quant4.py
+4-bit MLX quantization keeps the frozen GPT-2 base weights in grouped affine INT4 form and leaves LoRA weights trainable in float32.
+```
+python gpt_peft_mlx_quant4.py --mode train --model gpt2 --data train.jsonl --save-lora mlx_gpt2_lora_quant4.npz
+python gpt_peft_mlx_quant4.py --mode infer --model gpt2 --load-lora mlx_gpt2_lora_quant4.npz
+```
+
+## gpt_peft_np_quant4.py
+4-bit NumPy quantization packs two affine INT4 weights per byte for the frozen base model and dequantizes on demand during forward passes.
+```
+python gpt_peft_np_quant4.py --mode train --model gpt2 --data train.jsonl --save-lora numpy_gpt2_lora_quant4.npz
+python gpt_peft_np_quant4.py --mode infer --model gpt2 --load-lora numpy_gpt2_lora_quant4.npz
+```
